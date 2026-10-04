@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="cont">
+
+        <button class="ChatBtn active" id="Chatbtn">CHATS</button>
+        <button class="ChatBtn" id="Contactbtn">CONTACTS</button>
+
+    </div>
+
+
+
+    <div class="upper" id="upper">
+
+        <div class="search-row">
+        <input type="text" class="search" id="search" placeholder="Search...">
+        <button class="addBtn" id="addBtn">+</button>
+        </div>
+
+        <div class="contact-list" id="contact-list"></div>
+
+    </div>
+
+
+
+    <div class="overlay" id="overlay">
+
+    <div class="overlay-content" id="overlay-content">
+        <p class="overlay-title">Add New Contact</p>
+        <button class="closeBtn" id="closeBtn">x</button>
+        <input type="text" class="contactId inp" id="contactId" placeholder="Enter Contact ID">
+        <input type="text" class="nameInput inp" id="nameInput" placeholder="Enter Name">
+        <input type="text" class="familyInput inp" id="familyInput" placeholder="Enter Family (optional)">
+        <input type="text" class="descriptions inp" id="descriptionsInput" placeholder="Enter descriptions (optional)">
+        <button class="saveBtn" id="saveBtn">Save</button>
+    </div>
+
+    <div class="overlay-background" id="overlay-background">
+    <p class="error-message" id="error-message"></p>
+    </div>
+    </div>
+
+
+    </body>
+<script src="script.js"></script>
+</html>

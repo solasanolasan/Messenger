@@ -1,0 +1,390 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #2e1158, #110524);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.cont {
+    width: 100%;
+    height: 45px;
+    background: linear-gradient(360deg, #3f1576, #593885ce);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    gap: 70px;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transform: translateY(-80%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.cont:hover {
+    transform: translateY(0%);
+}
+
+.ChatBtn {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;    
+    letter-spacing: 2.5px;
+    padding: 0px;
+    margin-left: 85px;
+    cursor: pointer;
+    opacity: 0.4;
+    position: relative;
+    transition: opacity 0.4s ease-out;
+}
+
+.ChatBtn.active {
+    opacity: 1;
+}
+
+.ChatBtn::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2.5px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.ChatBtn.active::after {
+    transform: scaleX(1);
+}
+
+.upper {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: calc(100vh - 70px);
+    backdrop-filter: blur(100px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 55px;
+    padding: 25px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 50px 10px rgba(255, 255, 255, 0.1);  
+}
+
+.search {
+    border-radius: 20px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    font-size: 20px;
+    padding: 12px;
+    margin-top: 10px;
+    outline: none;
+    color: white;
+    width: 360px;
+    height: 45px;
+    padding-left: 20px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.addBtn {
+    transform: scale(0);
+    opacity: 0;
+    border-radius: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: none;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.562);
+    backdrop-filter: blur(0px);
+    width: 60px;
+    height: 45px;
+    margin-left: 25px;
+    cursor: none;
+    pointer-events: none;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease-in-out, opacity 0.7s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.addBtn.show {
+    transform: scale(1);
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.addBtn:active {
+    transform: scale(0.85);
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
+}
+
+.search:focus {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(3px);
+    z-index: 9999;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;  
+    transition: opacity 0.4s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.overlay-content {
+    position: relative;
+    width: 30%;
+    height: 60%;
+    border-radius: 20px;
+    backdrop-filter: blur(50px);
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.inp {
+    border-radius: 20px;
+    margin-top: 8px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(50px);
+    font-size: 18px;
+    display: flex;
+    padding: 8px;
+    outline: none;
+    color: white;
+    width: 300px;
+    height: 45px;
+    padding-left: 20px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease-in-out, opacity 0.7s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.saveBtn {
+    border-radius: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: none;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.562);
+    backdrop-filter: blur(0px);
+    width: 250px;
+    height: 45px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 20px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease-in-out, opacity 0.7s ease-in-out, box-shadow 0.5s ease-in-out;
+
+}
+
+.closeBtn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    color: rgba(236, 53, 53, 0.7);
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: none;
+}
+
+.closeBtn:hover {
+    color: rgba(255, 255, 255, 0.619);
+    transform: scale(1.2);
+}
+
+.inp:focus {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+.saveBtn:active {
+    transform: scale(0.9);
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
+}
+
+.overlay-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.overlay-background {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    width: 280px;
+    min-height: 50px;
+    padding: 14px 20px;
+    border-radius: 16px;
+    background: rgba(180, 20, 20, 0.35);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 80, 80, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.overlay-background.show {
+    animation: errorAnim 3.2s ease-in-out forwards;
+}
+
+@keyframes errorAnim {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.9);
+    }
+    12% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(2);
+    }
+}
+
+.error-message {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.3px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 35px;
+    overflow-y: auto;
+    max-height: 100%;
+    direction: rtl;
+    overflow-y: auto;
+}
+
+
+.contact-card {
+    direction: ltr;
+    flex-direction: row;
+    background: rgba(95, 63, 159, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: auto;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-left: 8px;
+    margin-right: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+
+.contact-card:hover {
+    background: rgba(63, 21, 118, 0.6);
+}
+
+
+.contact-card h4 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    align-items: center;
+}
+
+.search-row {
+display: flex;
+align-items: center;
+}
+
+.contact-list::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.contact-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contact-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px; 
+}
+
+.contact-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.avatar {
+    font-size: 22px;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.20);
+}
